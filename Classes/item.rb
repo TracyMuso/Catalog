@@ -1,5 +1,5 @@
 class Item
-  attr_accessor :publish_date 
+  attr_accessor :publish_date
   attr_reader :genre, :author, :source, :label
 
   def initialize(publish_date)
@@ -16,7 +16,6 @@ class Item
     @archived = false
   end
 
-
   def move_to_archive
     @archieved = true if can_be_archieved?
   end
@@ -28,6 +27,4 @@ class Item
     current_date = Time.new.year
     current_date - year_pub > 10
   end
-
-
 end
