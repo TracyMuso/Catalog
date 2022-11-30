@@ -1,5 +1,4 @@
 class App
-  puts 'hello'
   def add_music_album
     puts 'Name of the music album: '
     name = gets.chomp
