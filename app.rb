@@ -40,7 +40,8 @@ class App
     @authors.map do |author|
       puts "ID: #{author.id}, First Name: #{author.first_name}, Last Name: #{author.last_name}, Items: #{author.items}"
     end
-   end
+  end
+  
   def add_music_album
     puts 'Name of the music album: '
     name = gets.chomp
