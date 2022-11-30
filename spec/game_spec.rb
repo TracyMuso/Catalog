@@ -2,7 +2,7 @@ require '../classes/game'
 
 # Unit test class Game all methods
 describe Game do
-  content "Unit Test Game Class" do
+  content 'Unit Test Game Class' do
     game = Game.mew '2022-11-25', false, '2022-11-30'
     it 'Should return Game publish Date' do
       expect(game.publish_date).to eq('2022-11-25')
@@ -15,6 +15,5 @@ describe Game do
     it 'Should be an instance og Game' do
       expect(game).to be_an_instance_of(Game)
     end
-
   end
 end

@@ -1,6 +1,6 @@
 Test author function
 describe Author do
-  content "Unit Test Author Class" do
+  content 'Unit Test Author Class' do
     author = Author.new 'John', 'Doe'
     it 'Should return Author first name' do
       expect(author.first_name).to eq('John')
@@ -15,5 +15,3 @@ describe Author do
     end
   end
 end
-
-
