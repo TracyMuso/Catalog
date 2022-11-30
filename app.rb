@@ -5,7 +5,8 @@ class App
     @games = []
     @authors = []
   end
-  # function to add new game 
+
+  # function to add new game
   def add_game
     puts 'Enter publish date'
     publish_date = gets.chomp
@@ -24,7 +25,7 @@ class App
     end
   end
 
-# function to add new author
+  # function to add new author
   def add_author
     puts 'Enter first name'
     first_name = gets.chomp
@@ -40,5 +41,4 @@ class App
       puts "ID: #{author.id}, First Name: #{author.first_name}, Last Name: #{author.last_name}, Items: #{author.items}"
     end
   end
-
 end
