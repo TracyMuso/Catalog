@@ -17,3 +17,4 @@ end
 
 # ruby Classes/music_album.rb
 # ruby Classes/genre.rb
+# rspec spec spec/music_album_spec.rb
