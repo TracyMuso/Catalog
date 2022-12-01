@@ -1,8 +1,8 @@
-require '../classes/author'
+require_relative '../Classes/author'
 
 # Test author function
 describe Author do
-  content 'Unit Test Author Class' do
+  context 'Unit Test Author Class' do
     author = Author.new 'John', 'Doe'
     it 'Should return Author first name' do
       expect(author.first_name).to eq('John')
@@ -12,7 +12,7 @@ describe Author do
       expect(author.last_name).to eq('Doe')
     end
 
-    it 'Should be an instance og Author' do
+    it 'Should be an instance of Author' do
       expect(author).to be_an_instance_of(Author)
     end
   end
