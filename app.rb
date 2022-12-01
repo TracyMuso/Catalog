@@ -13,7 +13,7 @@ class App
     @authors = []
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+  # rubocop:disable Metrics/CyclomaticComplexity
   def process_option(option)
     case option
     when '1'
@@ -44,8 +44,8 @@ class App
       puts 'That is not a valid input'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
   def add_book
     puts 'Add a book'
     print 'Publish Date[dd/mm/yyyy]: '
@@ -117,7 +117,9 @@ class App
   # function to list all games
   def list_games
     @games.map do |game|
-      puts "ID: #{game.id}, Player: #{game.multiplayer}, Last Player: #{game.last_player_at}"
+      puts "ID: #{game.id},
+      Player: #{game.multiplayer},
+      Last Player: #{game.last_player_at}"
     end
   end
 
@@ -134,7 +136,10 @@ class App
   # function to list all authors
   def list_authors
     @authors.map do |author|
-      puts "ID: #{author.id}, First Name: #{author.first_name}, Last Name: #{author.last_name}, Items: #{author.items}"
+      puts "ID: #{author.id},
+      First Name: #{author.first_name},
+      Last Name: #{author.last_name},
+      Items: #{author.items}"
     end
   end
 
