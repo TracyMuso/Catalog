@@ -14,6 +14,3 @@ class Book < Item
     super || cover_state == 'bad'
   end
 end
-
-book1 = Book.new('2022-04-03', 'Joan', 'good')
-puts book1.label
