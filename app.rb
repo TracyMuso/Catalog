@@ -1,37 +1,26 @@
 require './Classes/game'
 require './Classes/author'
 class App
-
+  # rubocop:disable Metrics/CyclomaticComplexity
   def process_option(option)
     case option
-    when '1'
-      list_books
-    when '2'
-      list_music_albums
-    when '3'
-      list_movies
-    when '4'
-      list_games
-    when '5'
-      list_genres
-    when '6'
-      list_labels
-    when '7'
-      list_authors
-    when '8'
-      list_sources
-    when '9'
-      add_book
-    when '10'
-      add_music_album
-    when '11'
-      add_movie
-    when '12'
-      add_game
+    when '1' then list_books
+    when '2' then list_music_albums
+    when '3' then list_movies
+    when '4' then list_games
+    when '5' then list_genres
+    when '6' then list_labels
+    when '7' then list_authors
+    when '8' then list_sources
+    when '9' then add_book
+    when '10' then add_music_album
+    when '11' then add_movie
+    when '12' then add_game
     else
       puts 'That is not a valid input'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def initialize
     @games = []
@@ -53,7 +42,9 @@ class App
   # function to list all games
   def list_games
     @games.map do |game|
-      puts "ID: #{game.id}, Player: #{game.multiplayer}, Last Player: #{game.last_player_at}"
+      puts "ID: #{game.id},
+      Player: #{game.multiplayer},
+      Last Player: #{game.last_player_at}"
     end
   end
 
@@ -70,7 +61,10 @@ class App
   # function to list all authors
   def list_authors
     @authors.map do |author|
-      puts "ID: #{author.id}, First Name: #{author.first_name}, Last Name: #{author.last_name}, Items: #{author.items}"
+      puts "ID: #{author.id},
+      First Name: #{author.first_name},
+      Last Name: #{author.last_name},
+      Items: #{author.items}"
     end
   end
 
