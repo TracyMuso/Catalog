@@ -4,6 +4,8 @@ require_relative './Classes/label'
 require_relative './Classes/verify_date'
 require './Classes/game'
 require './Classes/author'
+require_relative './Classes/movie'
+require_relative './Classes/source'
 
 class App
   def initialize
@@ -11,9 +13,10 @@ class App
     @labels = []
     @games = []
     @authors = []
+    @movies = []
+    @sources = []
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity
   def process_option(option)
     case option
     when '1'
@@ -175,6 +178,38 @@ class App
       puts "Name: #{genre.name}"
       puts "Items: #{genre.items}"
       puts '-' * 50
+    end
+  end
+
+  # add movie
+  def add_movie
+    puts 'Enter Movie Name:'
+    movie_name = gets.chomp
+    puts 'Enter Movie Source:'
+    movie_source = gets.chomp
+    puts 'Enter Movie Publish Date:'
+    movie_publish_date = gets.chomp
+    puts 'Enter Movie Silet (y/n ):'
+    movie_silet = gets.chomp
+
+    case movie_silet
+    when 'y'
+      @movies << Movie.new(movie_name, movie_source, movie_publish_date, true)
+
+    when 'n'
+      @movies << Movie.new(movie_name, movie_source, movie_publish_date, false)
+    else
+      puts 'That is not a valid input'
+    end
+  end
+
+  # list movie
+  def list_movies
+    @movies.each do |movie|
+      puts "Movie Name: #{movie.name}"
+      puts "Movie Source: #{movie.source}"
+      puts "Movie Publish Date: #{movie.publish_date}"
+      puts "Movie Silet: #{movie.silet}"
     end
   end
 end
