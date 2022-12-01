@@ -12,8 +12,8 @@ class App
     @games = []
     @authors = []
   end
-  
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+
+  # rubocop:disable Metrics/CyclomaticComplexity
   def process_option(option)
     case option
     when '1' then list_books
@@ -32,8 +32,8 @@ class App
       puts 'That is not a valid input'
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
-  
+  # rubocop:enable Metrics/CyclomaticComplexity
+
   def add_book
     puts 'Add a book'
     print 'Publish Date[dd/mm/yyyy]: '
