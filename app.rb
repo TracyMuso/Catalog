@@ -17,7 +17,7 @@ class App
   def process_option(option)
     case option
     when '1'
-      list_books
+      list_all_books
     when '2'
       list_music_albums
     when '3'
@@ -82,6 +82,8 @@ class App
         puts "
         #{index + 1} Publish_date: #{book.publish_date},
         Publisher: #{book.publisher},
+        Title: #{book.label.title},
+        Title: #{book.label.color},
         Cover_state: #{book.cover_state}"
       end
     end
