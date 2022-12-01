@@ -1,9 +1,11 @@
 require_relative '../Classes/movie'
+require_relative '../Classes/source'
 
 class App
   attr_accessor :movies
   def initialize
     @movies = []
+    @sources = []
   end
 
   def add_movie(movie)
@@ -15,7 +17,15 @@ class App
     movie_publish_date = gets.chomp
     puts 'Enter Movie Silet:'
     movie_silet = gets.chomp
-    @movies << movie
+    @movies << movie.new(movie_name, movie_source, movie_publish_date, movie_silet)
   end
-  puts 'hello'
+  def list_movies(movies)
+    movies.each do |movie|
+      puts "Movie Name: #{movie.name}"
+      puts "Movie Source: #{movie.source}"
+      puts "Movie Publish Date: #{movie.publish_date}"
+      puts "Movie Silet: #{movie.silet}"
+    end
+  
+    
 end
