@@ -1,4 +1,7 @@
+require_relative 'app'
+
 class Main
+  app = App.new
   loop do
     puts '-' * 50
     puts "|\tWelcome to my Catalog of things!!\t\t |"
@@ -7,17 +10,19 @@ class Main
     puts '2 - List all music albums'
     puts '3 - List all movies'
     puts '4 - List all games'
-    puts '5 List all genres'
-    puts '6 List all labels'
-    puts '7 List all authors'
-    puts '8 List all sources'
-    puts '9 Add a book'
-    puts '10 Add a music album'
-    puts '11 Add a movie'
-    puts '12 Add a game'
+    puts '5 - List all genres'
+    puts '6 - List all labels'
+    puts '7 - List all authors'
+    puts '8 - List all sources'
+    puts '9 - Add a book'
+    puts '10 - Add a music album'
+    puts '11 - Add a movie'
+    puts '12 - Add a game'
     puts '13 - Exit'
     puts 'Please choose an option by entering a number:'
     option = gets.chomp
-    option == '13' ? break : puts('Invalid option')
+    option == '7' ? break : app.process_option(option)
   end
+  # app.save_data
+  puts 'Thank you for using this app!'
 end
