@@ -1,4 +1,6 @@
-Test author function
+require '../classes/author'
+
+# Test author function
 describe Author do
   content 'Unit Test Author Class' do
     author = Author.new 'John', 'Doe'
