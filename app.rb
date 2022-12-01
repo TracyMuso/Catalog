@@ -13,6 +13,7 @@ class App
     @authors = []
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
   def process_option(option)
     case option
     when '1'
@@ -44,6 +45,7 @@ class App
     end
   end
 
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
   def add_book
     puts 'Add a book'
     print 'Publish Date[dd/mm/yyyy]: '
