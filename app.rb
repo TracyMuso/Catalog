@@ -1,3 +1,7 @@
+require_relative './Classes/item'
+require_relative './Classes/book'
+require_relative './Classes/label'
+require_relative './Classes/verify_date'
 require './Classes/game'
 require './Classes/author'
 require_relative './Classes/movie'
@@ -5,6 +9,8 @@ require_relative './Classes/source'
 
 class App
   def initialize
+    @books = []
+    @labels = []
     @games = []
     @authors = []
     @movies = []
@@ -14,7 +20,7 @@ class App
   def process_option(option)
     case option
     when '1'
-      list_books
+      list_all_books
     when '2'
       list_music_albums
     when '3'
@@ -41,6 +47,63 @@ class App
       puts 'That is not a valid input'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
+
+  def add_book
+    puts 'Add a book'
+    print 'Publish Date[dd/mm/yyyy]: '
+    publish_date = gets.chomp
+    publish_date = DateVerification.get_date(publish_date)
+    print 'Publisher: '
+    publisher = gets.chomp
+    print 'Cover state Date["good" or "bad"]: '
+    cover_state = gets.chomp.downcase
+    new_book = Book.new(publish_date, publisher, cover_state)
+    new_label = add_label
+    new_label.add_book(new_book)
+    @books << new_book
+    @labels << new_label
+    puts 'A book is added successfullly'
+    puts ''
+  end
+
+  def add_label
+    puts 'Add a label'
+    print 'Title: '
+    title = gets.chomp
+    print 'Color: '
+    color = gets.chomp
+    Label.new(title, color)
+  end
+
+  def list_all_books
+    if @books.empty?
+      puts 'The catalog has no books'
+    else
+      puts 'List of all books:'
+      @books.each_with_index do |book, index|
+        puts "
+        #{index + 1} Publish_date: #{book.publish_date},
+        Publisher: #{book.publisher},
+        Title: #{book.label.title},
+        Title: #{book.label.color},
+        Cover_state: #{book.cover_state}"
+      end
+    end
+    puts ''
+  end
+
+  def list_all_labels
+    if @labels.empty?
+      puts 'The Catalog has no labels'
+    else
+      puts 'List of all labels:'
+      @labels.each_with_index do |book, index|
+        puts "[#{index + 1}] Title: #{book.title}, Color: #{book.color}"
+      end
+    end
+    puts ''
+  end
 
   # function to add new game
   def add_game
@@ -57,7 +120,9 @@ class App
   # function to list all games
   def list_games
     @games.map do |game|
-      puts "ID: #{game.id}, Player: #{game.multiplayer}, Last Player: #{game.last_player_at}"
+      puts "ID: #{game.id},
+      Player: #{game.multiplayer},
+      Last Player: #{game.last_player_at}"
     end
   end
 
@@ -74,7 +139,10 @@ class App
   # function to list all authors
   def list_authors
     @authors.map do |author|
-      puts "ID: #{author.id}, First Name: #{author.first_name}, Last Name: #{author.last_name}, Items: #{author.items}"
+      puts "ID: #{author.id},
+      First Name: #{author.first_name},
+      Last Name: #{author.last_name},
+      Items: #{author.items}"
     end
   end
 
