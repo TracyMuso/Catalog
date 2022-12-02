@@ -1,4 +1,79 @@
+require_relative 'helper'
+
 class App
+
+  def process_option(option)
+    case option
+    when '1'
+      list_books
+    when '2'
+      list_music_albums
+    when '3'
+      list_movies
+    when '4'
+      list_games
+    when '5'
+      list_genres
+    when '6'
+      list_labels
+    when '7'
+      list_authors
+    when '8'
+      list_sources
+    when '9'
+      add_book
+    when '10'
+      add_music_album
+    when '11'
+      add_movie
+    when '12'
+      add_game
+    else
+      puts 'That is not a valid input'
+    end
+  end
+
+  def initialize
+    @games = []
+    @authors = []
+  end
+
+  # function to add new game
+  def add_game
+    puts 'Enter publish date'
+    publish_date = gets.chomp
+    puts 'Enter multiplayer'
+    multiplayer = gets.chomp
+    puts 'Enter last player at'
+    last_player_at = gets.chomp
+    game = Game.new(publish_date, multiplayer, last_player_at)
+    @games.push(game)
+  end
+
+  # function to list all games
+  def list_games
+    @games.map do |game|
+      puts "ID: #{game.id}, Player: #{game.multiplayer}, Last Player: #{game.last_player_at}"
+    end
+  end
+
+  # function to add new author
+  def add_author
+    puts 'Enter first name'
+    first_name = gets.chomp
+    puts 'Enter last name'
+    last_name = gets.chomp
+    author = Author.new(first_name, last_name)
+    @authors.push(author)
+  end
+
+  # function to list all authors
+  def list_authors
+    @authors.map do |author|
+      puts "ID: #{author.id}, First Name: #{author.first_name}, Last Name: #{author.last_name}, Items: #{author.items}"
+    end
+  end
+
   def add_music_album
     puts 'Name of the music album: '
     name = gets.chomp
@@ -6,28 +81,56 @@ class App
     on_spotify = gets.chomp == 'y'
     puts 'Publish date: '
     publish_date = gets.chomp
-    MusicAlbum.new(name, on_spotify, publish_date)
+    new_album = MusicAlbum.new(name, on_spotify, publish_date)
+    save_album(new_album)
   end
 
-  def list_all_albums
-    MusicAlbum.all.each do |album|
+  def list_albums
+    alums = File.size(./data/music_albums.json).zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
+
+    albums.each do |album|
       puts "Name: #{album.name}"
       puts "On Spotify: #{album.on_spotify}"
       puts "Publish date: #{album.publish_date}"
-      puts "Genre: #{album.genre.name}"
       puts "Archived: #{album.archived}"
       puts '-' * 50
     end
   end
 
+  def save_album(album)
+    album_object = {
+      name: album.name,
+      on_spotify: album.on_spotify,
+      publish_date: album.publish_date
+    }
+
+    stored_album = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
+    stored_album.push(album_object)
+    File.write('./data/music_albums.json', JSON.pretty_generate(stored_album))
+  end
+
   def add_genre
     puts 'Name of the genre: '
     name = gets.chomp
-    Genre.new(name)
+    new_genre = Genre.new(name)
+    save_genre(new_genre)
   end
 
-  def list_all_genres
-    Genre.all.each do |genre|
+  def save_genre(genre)
+    genre_object = {
+      id: genre.id,
+      name: genre.name
+    }
+
+    saved_genre = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
+    saved_genre.push(genre_object)
+    File.write('./data/genre.json', JSON.pretty_generate(saved_genre))
+  end
+
+  def list_genres
+  genres = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
+
+    genres.each do |genre|
       puts "Name: #{genre.name}"
       puts "Items: #{genre.items}"
       puts '-' * 50

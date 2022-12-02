@@ -1,0 +1,12 @@
+require './Classes/game'
+require './Classes/author'
+require './Classes/genre'
+require './Classes/item'
+require './Classes/label'
+require './Classes/music_album'
+require './Classes/movie'
+require './Classes/source'
+require './Classes/book'
+require './Classes/main'
+require 'json'
+
