@@ -11,6 +11,8 @@ class Label
 
   def add_book(book)
     @books << book unless @books.include?(book)
-    book.label = self
+    # rubocop:disable Lint/UselessAssignment
+    label = self
+    # rubocop:enable Lint/UselessAssignment
   end
 end

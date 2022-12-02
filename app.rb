@@ -23,7 +23,7 @@ class App
     when '5'
       list_genres
     when '6'
-      list_labels
+      list_all_labels
     when '7'
       list_authors
     when '8'
@@ -54,9 +54,23 @@ class App
     new_label = add_label
     new_label.add_book(new_book)
     @books << new_book
+    save_book(new_book)
     @labels << new_label
+    save_label(new_label)
     puts 'A book is added successfullly'
     puts ''
+  end
+
+  def save_book(book)
+    book_object = {
+      publish_date: book.publish_date,
+      publisher: book.publisher,
+      cover_state: book.cover_state
+    }
+
+    stored_book = File.size('./data_json/books.json').zero? ? [] : JSON.parse(File.read('./data_json/books.json'))
+    stored_book.push(book_object)
+    File.write('./data_json/books.json', JSON.pretty_generate(stored_book))
   end
 
   def add_label
@@ -68,33 +82,33 @@ class App
     Label.new(title, color)
   end
 
+  def save_label(label)
+    label_object = {
+      title: label.title,
+      color: label.color
+    }
+    saved_label = File.size('./data_json/labels.json').zero? ? [] : JSON.parse(File.read('./data_json/labels.json'))
+    saved_label.push(label_object)
+    File.write('./data_json/labels.json', JSON.pretty_generate(saved_label))
+  end
+
   def list_all_books
-    if @books.empty?
-      puts 'The catalog has no books'
-    else
-      puts 'List of all books:'
-      @books.each_with_index do |book, index|
-        puts "
+    books = File.size('./data_json/books.json').zero? ? [] : JSON.parse(File.read('./data_json/books.json'))
+    books.each_with_index do |book, index|
+      puts "
         #{index + 1} Publish_date: #{book.publish_date},
         Publisher: #{book.publisher},
-        Title: #{book.label.title},
-        Title: #{book.label.color},
         Cover_state: #{book.cover_state}"
-      end
+      puts '-' * 50
     end
-    puts ''
   end
 
   def list_all_labels
-    if @labels.empty?
-      puts 'The Catalog has no labels'
-    else
-      puts 'List of all labels:'
-      @labels.each_with_index do |book, index|
-        puts "[#{index + 1}] Title: #{book.title}, Color: #{book.color}"
-      end
+    labels = File.size('./data_json/labels.json').zero? ? [] : JSON.parse(File.read('./data_json/labels.json'))
+    labels.each_with_index do |book, index|
+      puts "[#{index + 1}] Book: #{book}"
+      puts '-' * 50
     end
-    puts ''
   end
 
   # function to add new game
