@@ -1,12 +1,4 @@
-require_relative './Classes/item'
-require_relative './Classes/book'
-require_relative './Classes/label'
-require_relative './Classes/verify_date'
-require './Classes/game'
-require './Classes/author'
-require_relative './Classes/movie'
-require_relative './Classes/source'
-require 'json'
+require_relative 'helper'
 
 class App
   def initialize
@@ -17,7 +9,6 @@ class App
     @movies = []
     @sources = []
   end
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
   def process_option(option)
     case option
@@ -50,7 +41,7 @@ class App
     end
   end
 
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def add_book
     puts 'Add a book'
@@ -162,7 +153,6 @@ class App
 
   def list_albums
     albums = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
-
     albums.each do |album|
       puts "Name: #{album.name}"
       puts "On Spotify: #{album.on_spotify}"
@@ -196,7 +186,6 @@ class App
       id: genre.id,
       name: genre.name
     }
-
     saved_genre = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
     saved_genre.push(genre_object)
     File.write('./data/genre.json', JSON.pretty_generate(saved_genre))
@@ -204,7 +193,6 @@ class App
 
   def list_genres
     genres = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
-
     genres.each do |genre|
       puts "Name: #{genre.name}"
       puts "Items: #{genre.items}"
