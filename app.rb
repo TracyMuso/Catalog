@@ -17,6 +17,7 @@ class App
     @movies = []
     @sources = []
   end
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
   def process_option(option)
     case option
@@ -49,11 +50,7 @@ class App
     end
   end
 
-  def initialize
-    @games = []
-    @authors = []
-  end
-
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
   # function to add new game
   def add_game
     puts 'Enter publish date'
@@ -102,7 +99,7 @@ class App
   end
 
   def list_albums
-    alums = File.size(./data/music_albums.json).zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
+    albums = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
 
     albums.each do |album|
       puts "Name: #{album.name}"
@@ -144,7 +141,7 @@ class App
   end
 
   def list_genres
-  genres = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
+    genres = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
 
     genres.each do |genre|
       puts "Name: #{genre.name}"
