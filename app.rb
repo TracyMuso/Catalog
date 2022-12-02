@@ -36,8 +36,6 @@ class App
       add_movie
     when '12'
       add_game
-    else
-      puts 'That is not a valid input'
     end
   end
 
@@ -151,13 +149,10 @@ class App
     save_album(new_album)
   end
 
-  def list_albums
+  def list_music_albums
     albums = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
     albums.each do |album|
-      puts "Name: #{album.name}"
-      puts "On Spotify: #{album.on_spotify}"
-      puts "Publish date: #{album.publish_date}"
-      puts "Archived: #{album.archived}"
+      puts "Name: #{album['name']}", "On Spotify: #{album['on_spotify']}", "Publish date: #{album['publish_date']}"
       puts '-' * 50
     end
   end
@@ -194,8 +189,7 @@ class App
   def list_genres
     genres = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
     genres.each do |genre|
-      puts "Name: #{genre.name}"
-      puts "Items: #{genre.items}"
+      puts "Name: #{genre.name}", "Items: #{genre.items}"
       puts '-' * 50
     end
   end
