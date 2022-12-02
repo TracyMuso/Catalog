@@ -94,10 +94,9 @@ class App
   def list_all_books
     books = File.size('./data_json/books.json').zero? ? [] : JSON.parse(File.read('./data_json/books.json'))
     books.each_with_index do |book, index|
-      
-        puts "#{index + 1} publish_date: #{book['publish_date']}",
-         "publisher: #{book['publisher']}", 
-         "cover_state: #{book['cover_state']}"
+      puts "#{index + 1} publish_date: #{book['publish_date']}",
+           "publisher: #{book['publisher']}",
+           "cover_state: #{book['cover_state']}"
       puts '-' * 50
     end
   end
