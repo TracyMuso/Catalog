@@ -14,7 +14,6 @@ class App
     @labels = []
     @games = []
     @authors = []
-    @movies = []
     @sources = []
   end
 
@@ -195,45 +194,37 @@ class App
 
     case movie_silet
     when 'y'
-      @movies << Movie.new(movie_name, movie_source, movie_publish_date, true)
-
+          new_movie = Movie.new(movie_name, movie_source, movie_publish_date, true)
     when 'n'
-      @movies << Movie.new(movie_name, movie_source, movie_publish_date, false)
+          new_movie = Movie.new(movie_name, movie_source, movie_publish_date, true)
     else
       puts 'That is not a valid input'
     end
-    store_movies(@movies)
+    store_movies(new_movie)
   end
 
   # list movie
   def list_movies
-    @movies.each do |movie|
-      puts "Movie Name: #{movie.name}"
-      puts "Movie Source: #{movie.source}"
-      puts "Movie Publish Date: #{movie.publish_date}"
-      puts "Movie Silet: #{movie.silet}"
+    albums = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
+    albums.each do |album|
+      puts "Name: #{album['name']}", "On Spotify: #{album['on_spotify']}", "Publish date: #{album['publish_date']}"
+      puts '-' * 50
     end
   end
 
   #prserve data
   def store_movies(movies)
-    obj = {}
-    movies.each do |movie|
-      obj[movie] = movie
-      
-    end
-    puts obj
-  # obj ={
-    #name: movies.name,
-   # source: movies.source,
-   # publish_date: movies.publish_date,
-   #}
-  
+    movie_object = {
+      name: movies.name,
+      source: movies.source,
+      publish_date: movies.publish_date,
+      silet: movies.silet
+    }
 
-  #  file = File.size('./movie_data.json').zero? ? [] : JSON.parse(File.read('./movie_data.json'))
-  #  file << obj
-  #  File.write('movie_data.json', file.to_json)
-  #  puts "in store movies"
+    stored_movie = File.size('./movie_data.json').zero? ? [] : JSON.parse(File.read('./movie_data.json'))
+    stored_movie.push(movie_object)
+    File.write('movie_data.json', JSON.pretty_generate(stored_movie))
+   puts "in store movies"
   end
   
   
