@@ -1,6 +1,22 @@
-require_relative 'helper'
+require_relative './Classes/item'
+require_relative './Classes/book'
+require_relative './Classes/label'
+require_relative './Classes/verify_date'
+require './Classes/game'
+require './Classes/author'
+require_relative './Classes/movie'
+require_relative './Classes/source'
+require 'json'
 
 class App
+  def initialize
+    @books = []
+    @labels = []
+    @games = []
+    @authors = []
+    @movies = []
+    @sources = []
+  end
 
   def process_option(option)
     case option

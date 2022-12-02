@@ -9,4 +9,3 @@ require './Classes/source'
 require './Classes/book'
 require './Classes/main'
 require 'json'
-
