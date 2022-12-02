@@ -10,7 +10,7 @@ describe Book do
       expect(book.cover_state).to eq('cover_state')
     end
   end
-   before(:each) do
+  before(:each) do
     @book = Book.new('publish_date', 'publisher', 'cover_state')
   end
 
