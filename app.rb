@@ -52,7 +52,6 @@ class App
     cover_state = gets.chomp.downcase
     new_book = Book.new(publish_date, publisher, cover_state)
     new_label = add_label
-    new_label.add_book(new_book)
     @books << new_book
     save_book(new_book)
     @labels << new_label
@@ -95,18 +94,18 @@ class App
   def list_all_books
     books = File.size('./data_json/books.json').zero? ? [] : JSON.parse(File.read('./data_json/books.json'))
     books.each_with_index do |book, index|
-      puts "
-        #{index + 1} Publish_date: #{book.publish_date},
-        Publisher: #{book.publisher},
-        Cover_state: #{book.cover_state}"
+      
+        puts "#{index + 1} publish_date: #{book['publish_date']}",
+         "publisher: #{book['publisher']}", 
+         "cover_state: #{book['cover_state']}"
       puts '-' * 50
     end
   end
 
   def list_all_labels
     labels = File.size('./data_json/labels.json').zero? ? [] : JSON.parse(File.read('./data_json/labels.json'))
-    labels.each_with_index do |book, index|
-      puts "[#{index + 1}] Book: #{book}"
+    labels.each_with_index do |label, index|
+      puts "#{index + 1} Title: #{label['title']}", "color: #{label['color']}"
       puts '-' * 50
     end
   end
