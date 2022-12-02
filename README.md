@@ -147,12 +147,22 @@ To run tests, run the following command:
 
 > Mention all of the collaborators of this project.
 
-👤 **Author1**
+👤 **Megha Bodke**
 
 - GitHub: [@megha-n-bodke](https://github.com/megha-n-bodke)
 - LinkedIn: [Megha Bodke](https://www.linkedin.com/in/megha-bodke/)
 
-👤 **Author2**
+👤 **Tracy Musongole**
+- GitHub: [@TracyMuso](https://github.com/TracyMuso)
+- LinkedIn: [Tracy Musongole](https://www.linkedin.com/in/tracy-muso/)
+
+👤 **George.W.Kidde**
+- GitHub: [@your handle](https://github.com/your handle)
+- LinkedIn: [wyour handle](https://www.linkedin.com/in/yourhandle/)
+
+👤 **Josh Batte**
+- GitHub: [@your handle](https://github.com/your handle)
+- LinkedIn: [your handle](https://www.linkedin.com/in/your handle/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
