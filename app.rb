@@ -205,7 +205,7 @@ class App
 
   # list movie
   def list_movies
-    albums = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
+    movies = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
     albums.each do |album|
       puts "Name: #{album['name']}", "On Spotify: #{album['on_spotify']}", "Publish date: #{album['publish_date']}"
       puts '-' * 50
