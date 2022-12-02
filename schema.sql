@@ -23,4 +23,4 @@ CREATE Table Movies(
     FOREIGN KEY (source_id) REFERENCES source(id)
     );
 
-    );
+    

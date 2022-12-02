@@ -202,9 +202,7 @@ class App
     else
       puts 'That is not a valid input'
     end
-    puts @movies
     store_movies(@movies)
-
   end
 
   # list movie
@@ -218,17 +216,24 @@ class App
   end
 
   #prserve data
-  def store_movies (movies)
-   obj = {
-    name: movies.name,
-    source: movies.source,
-    publish_date: movies.publish_date,
-   }
-    #@movies.each do |movie|
-     # puts "Movie Name: #{movie.name}"
-      #puts "Movie Source: #{movie.source}"
-    #end
-   puts "in store movies"
+  def store_movies(movies)
+    obj = {}
+    movies.each do |movie|
+      obj[movie] = movie
+      
+    end
+    puts obj
+  # obj ={
+    #name: movies.name,
+   # source: movies.source,
+   # publish_date: movies.publish_date,
+   #}
+  
+
+  #  file = File.size('./movie_data.json').zero? ? [] : JSON.parse(File.read('./movie_data.json'))
+  #  file << obj
+  #  File.write('movie_data.json', file.to_json)
+  #  puts "in store movies"
   end
   
   
