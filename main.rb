@@ -21,8 +21,7 @@ class Main
     puts '13 - Exit'
     puts 'Please choose an option by entering a number:'
     option = gets.chomp
-    option == '7' ? break : app.process_option(option)
+    option == '13' ? break : app.process_option(option)
   end
-  # app.save_data
   puts 'Thank you for using this app!'
 end
