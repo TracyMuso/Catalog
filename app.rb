@@ -114,18 +114,35 @@ class App
     publish_date = gets.chomp
     puts 'Enter multiplayer'
     multiplayer = gets.chomp
-    puts 'Enter last player at'
+    puts 'Enter last player'
     last_player_at = gets.chomp
+    new_author = add_author
     game = Game.new(publish_date, multiplayer, last_player_at)
     @games.push(game)
+    save_game(game)
+    @authors.push(new_author)
+    save_author(new_author)
+  end
+
+  def save_game(game)
+    game_object = {
+      publish_date: game.publish_date,
+      multiplayer: game.multiplayer,
+      last_player_at: game.last_player_at
+    }
+
+    stored_game = File.size('./data/game.json').zero? ? [] : JSON.parse(File.read('./data/game.json'))
+    stored_game.push(game_object)
+    File.write('./data/game.json', JSON.pretty_generate(stored_game))
   end
 
   # function to list all games
   def list_games
-    @games.map do |game|
-      puts "ID: #{game.id},
-      Player: #{game.multiplayer},
-      Last Player: #{game.last_player_at}"
+    games = File.size('./data/game.json').zero? ? [] : JSON.parse(File.read('./data/game.json'))
+    games.each do |game|
+      puts "publish_date: #{game['publish_date']}", "multiplayers: #{game['multiplayer']}",
+           "last_player: #{game['last_player_at']}"
+      puts '-' * 50
     end
   end
 
@@ -135,17 +152,28 @@ class App
     first_name = gets.chomp
     puts 'Enter last name'
     last_name = gets.chomp
-    author = Author.new(first_name, last_name)
-    @authors.push(author)
+    Author.new(first_name, last_name)
+  end
+
+  def save_author(author)
+    author_object = {
+      first_name: author.first_name,
+      last_name: author.last_name
+    }
+
+    stored_author = File.size('./data/author.json').zero? ? [] : JSON.parse(File.read('./data/author.json'))
+    stored_author.push(author_object)
+    File.write('./data/author.json', JSON.pretty_generate(stored_author))
   end
 
   # function to list all authors
   def list_authors
-    @authors.map do |author|
-      puts "ID: #{author.id},
-      First Name: #{author.first_name},
-      Last Name: #{author.last_name},
-      Items: #{author.items}"
+    authors = File.size('./data/author.json').zero? ? [] : JSON.parse(File.read('./data/author.json'))
+    authors.each do |author|
+      puts "
+    First Name: #{author['first_name']}",
+           "Last Name: #{author['last_name']}"
+      puts '-' * 50
     end
   end
 
@@ -156,8 +184,10 @@ class App
     on_spotify = gets.chomp == 'y'
     puts 'Publish date: '
     publish_date = gets.chomp
-    new_movie = Musicmovie.new(name, on_spotify, publish_date)
-    save_movie(new_movie)
+    new_album = MusicAlbum.new(name, on_spotify, publish_date)
+    new_genre = add_genre
+    save_album(new_album)
+    save_genre(new_genre)
   end
 
   def list_music_movies
@@ -183,8 +213,7 @@ class App
   def add_genre
     puts 'Name of the genre: '
     name = gets.chomp
-    new_genre = Genre.new(name)
-    save_genre(new_genre)
+    Genre.new(name)
   end
 
   def save_genre(genre)
@@ -200,7 +229,7 @@ class App
   def list_genres
     genres = File.size('./data/genre.json').zero? ? [] : JSON.parse(File.read('./data/genre.json'))
     genres.each do |genre|
-      puts "Name: #{genre.name}", "Items: #{genre.items}"
+      puts "Name: #{genre['name']}", "Items: #{genre['items']}"
       puts '-' * 50
     end
   end
