@@ -157,12 +157,12 @@ To run tests, run the following command:
 - LinkedIn: [Tracy Musongole](https://www.linkedin.com/in/tracy-muso/)
 
 👤 **George.W.Kidde**
-- GitHub: [@your handle](https://github.com/your handle)
-- LinkedIn: [wyour handle](https://www.linkedin.com/in/yourhandle/)
+- GitHub: [@kidde60](https://github.com/kidde60)
+- LinkedIn: [William.G.Kidde](https://www.linkedin.com/in/kidde-george-william/)
 
-👤 **Josh Batte**
-- GitHub: [@your handle](https://github.com/your handle)
-- LinkedIn: [your handle](https://www.linkedin.com/in/your handle/)
+👤 **Josue Batey**
+- GitHub: [@Bateyjosue](https://github.com/Bateyjosue)
+- LinkedIn: [Bateyjosue](https://www.linkedin.com/in/josue-ishara/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -172,7 +172,7 @@ To run tests, run the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](github.com/TracyMuso/Catalog/issues/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
