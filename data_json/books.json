@@ -8,5 +8,10 @@
     "publish_date": "12/12/2022",
     "publisher": "William",
     "cover_state": "good"
+  },
+  {
+    "publish_date": "12/3/1980",
+    "publisher": "Navneet",
+    "cover_state": "good"
   }
 ]
