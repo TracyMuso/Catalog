@@ -83,6 +83,10 @@ After you're finished please remove all the comments and instructions!
   - Add a movie
   - Add a game
 
+## Vedio Demo
+
+[Video](./VedioDemo.mp4)
+
 ## 🛠 Built With <a name="built-with">Ruby</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -153,14 +157,17 @@ To run tests, run the following command:
 - LinkedIn: [Megha Bodke](https://www.linkedin.com/in/megha-bodke/)
 
 👤 **Tracy Musongole**
+
 - GitHub: [@TracyMuso](https://github.com/TracyMuso)
 - LinkedIn: [Tracy Musongole](https://www.linkedin.com/in/tracy-muso/)
 
 👤 **George.W.Kidde**
+
 - GitHub: [@kidde60](https://github.com/kidde60)
 - LinkedIn: [William.G.Kidde](https://www.linkedin.com/in/kidde-george-william/)
 
 👤 **Josue Batey**
+
 - GitHub: [@Bateyjosue](https://github.com/Bateyjosue)
 - LinkedIn: [Bateyjosue](https://www.linkedin.com/in/josue-ishara/)
 
