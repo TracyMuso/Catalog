@@ -6,7 +6,6 @@ class App
     @labels = []
     @games = []
     @authors = []
-    @movies = []
     @sources = []
   end
 
@@ -15,7 +14,7 @@ class App
     when '1'
       list_all_books
     when '2'
-      list_music_albums
+      list_music_movies
     when '3'
       list_movies
     when '4'
@@ -31,7 +30,7 @@ class App
     when '9'
       add_book
     when '10'
-      add_music_album
+      add_music_movie
     when '11'
       add_movie
     when '12'
@@ -178,8 +177,8 @@ class App
     end
   end
 
-  def add_music_album
-    puts 'Name of the music album: '
+  def add_music_movie
+    puts 'Name of the music movie: '
     name = gets.chomp
     puts 'Is it on Spotify? (y/n)'
     on_spotify = gets.chomp == 'y'
@@ -191,24 +190,24 @@ class App
     save_genre(new_genre)
   end
 
-  def list_music_albums
-    albums = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
-    albums.each do |album|
-      puts "Name: #{album['name']}", "On Spotify: #{album['on_spotify']}", "Publish date: #{album['publish_date']}"
+  def list_music_movies
+    movies = File.size('./data/movie_data.json').zero? ? [] : JSON.parse(File.read('./data/movie_data.json'))
+    movies.each do |movie|
+      puts "Name: #{movie['name']}", "On Spotify: #{movie['on_spotify']}", "Publish date: #{movie['publish_date']}"
       puts '-' * 50
     end
   end
 
-  def save_album(album)
-    album_object = {
-      name: album.name,
-      on_spotify: album.on_spotify,
-      publish_date: album.publish_date
+  def save_movie(movie)
+    movie_object = {
+      name: movie.name,
+      on_spotify: movie.on_spotify,
+      publish_date: movie.publish_date
     }
 
-    stored_album = File.size('./data/music_albums.json').zero? ? [] : JSON.parse(File.read('./data/music_albums.json'))
-    stored_album.push(album_object)
-    File.write('./data/music_albums.json', JSON.pretty_generate(stored_album))
+    stored_movie = File.size('./data/movie_data.json').zero? ? [] : JSON.parse(File.read('./data/movie_data.json'))
+    stored_movie.push(movie_object)
+    File.write('./data/movie_data.json', JSON.pretty_generate(stored_movie))
   end
 
   def add_genre
@@ -248,22 +247,73 @@ class App
 
     case movie_silet
     when 'y'
-      @movies << Movie.new(movie_name, movie_source, movie_publish_date, true)
-
+      new_movie = Movie.new(movie_name, movie_source, movie_publish_date, true)
     when 'n'
-      @movies << Movie.new(movie_name, movie_source, movie_publish_date, false)
+      new_movie = Movie.new(movie_name, movie_source, movie_publish_date, false)
     else
       puts 'That is not a valid input'
     end
+    add_source(new_movie)
+    store_movies(new_movie)
   end
 
   # list movie
   def list_movies
-    @movies.each do |movie|
-      puts "Movie Name: #{movie.name}"
-      puts "Movie Source: #{movie.source}"
-      puts "Movie Publish Date: #{movie.publish_date}"
-      puts "Movie Silet: #{movie.silet}"
+    movies = File.size('./data/movie_data.json').zero? ? [] : JSON.parse(File.read('./data/movie_data.json'))
+    movies.each do |movie|
+      puts "Name: #{movie['name']}", "Source: #{movie['source']}",
+           "Publish date: #{movie['publish_date']}, Silet: #{movie['silet']}"
+      puts '-' * 50
+    end
+  end
+
+  # prserve data
+  def store_movies(movies)
+    movie_object = {
+      name: movies.name,
+      source: movies.source,
+      publish_date: movies.publish_date,
+      silet: movies.silet
+    }
+
+    stored_movie = File.size('./data/movie_data.json').zero? ? [] : JSON.parse(File.read('./data/movie_data.json'))
+    stored_movie.push(movie_object)
+    File.write('./data/movie_data.json', JSON.pretty_generate(stored_movie))
+    puts 'in store movies'
+  end
+
+  # add source
+  def add_source(item)
+    puts 'Enter Source Name:'
+    source_name = gets.chomp
+    new_source = Source.new(source_name)
+    puts 'now going to source.rb'
+    new_source.add_item(item)
+    puts 'source created successfully'
+    store_source(new_source)
+  end
+
+  # store source to json file
+  def store_source(new_source)
+    hash = {
+      id: new_source.id,
+      name: new_source.name
+    }
+
+    if File.exist?('./data/source.json')
+      file = File.size('./data/source.json').zero? ? [] : JSON.parse(File.read('./data/source.json'))
+      file << hash
+      File.write('./data/source.json', file.to_json)
+    else
+      File.write('./data/source.json', [])
+    end
+  end
+
+  # list source
+  def list_sources
+    sources = File.size('./data/source.json').zero? ? [] : JSON.parse(File.read('./data/source.json'))
+    sources.each do |a|
+      puts "id: #{a['id']} , Name: #{a['name']}"
     end
   end
 end
