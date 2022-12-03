@@ -212,6 +212,7 @@ class App
     else
       puts 'That is not a valid input'
     end
+    add_source(new_movie)
     store_movies(new_movie)
   end
 
@@ -238,5 +239,40 @@ class App
     stored_movie.push(movie_object)
     File.write('./data/movie_data.json', JSON.pretty_generate(stored_movie))
     puts 'in store movies'
+  end
+
+  # add source
+  def add_source(item)
+    puts 'Enter Source Name:'
+    source_name = gets.chomp
+    new_source = Source.new(source_name)
+    puts 'now going to source.rb'
+    new_source.add_item(item)
+    puts 'source created successfully'
+    store_source(new_source)
+  end
+
+  # store source to json file
+  def store_source(new_source)
+    hash = {
+      id: new_source.id,
+      name: new_source.name
+    }
+
+    if File.exist?('./data/source.json')
+      file = File.size('./data/source.json').zero? ? [] : JSON.parse(File.read('./data/source.json'))
+      file << hash
+      File.write('./data/source.json', file.to_json)
+    else
+      File.write('./data/source.json', [])
+    end
+  end
+
+  # list source
+  def list_sources
+    sources = File.size('./data/source.json').zero? ? [] : JSON.parse(File.read('./data/source.json'))
+    sources.each do |a|
+      puts "id: #{a['id']} , Name: #{a['name']}"
+    end
   end
 end
