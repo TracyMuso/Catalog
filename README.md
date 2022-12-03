@@ -1,6 +1,6 @@
 # Catalog
 
-This is an app to shoe a catalog of my things
+This is an app to show a catalog of my things
 <a name="readme-top"></a>
 
 <!--
@@ -82,10 +82,11 @@ After you're finished please remove all the comments and instructions!
   - Add a music album
   - Add a movie
   - Add a game
+  - To exit the app
 
-## Vedio Demo
+## Video Demo
 
-[Video](./VedioDemo.mp4)
+![Video](https://raw.githubusercontent.com/TracyMuso/Catalog/dev/VedioDemo.mp4)
 
 ## 🛠 Built With <a name="built-with">Ruby</a>
 
@@ -113,14 +114,20 @@ Example command:
 
 ### Setup
 
-Clone this repository to your desired folder:
+Clone this repository:
+
+```sh
+  git clone https://github.com/TracyMuso/Catalog
+```
+Go to your project
 
 ```sh
   cd my-folder
-https://github.com/TracyMuso/Catalog
 ```
 
 ### Install
+
+*Important! You need to have ruby and rspec installed in your computer*
 
 Install this project with:
 
@@ -134,15 +141,16 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
-  rails server
+  ruby main.rb
 ```
+
 
 ### Run tests
 
 To run tests, run the following command:
 
 ```sh
-  bin/rails test test/models/article_test.rb
+  rspec spec spec/genre_spec.rb
 ```
 
 <!-- AUTHORS -->
