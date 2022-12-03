@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Create table called labels
 CREATE TABLE labels (
 	id INT GENERATED ALWAYS AS IDENTITY,
@@ -17,7 +16,6 @@ CREATE TABLE books (
   label_id INT,
   CONSTRAINT fk_label_id FOREIGN KEY (label_id) REFERENCES label(id),
 )
-=======
 CREATE Table item (
     id INTEGER PRIMARY KEY,
     source_id INTEGER,
@@ -44,4 +42,3 @@ CREATE Table Movies(
     );
 
     
->>>>>>> b1039fe30a7a83bbcf800ae76c708d07218a49f7
